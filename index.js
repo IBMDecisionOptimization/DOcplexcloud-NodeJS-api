@@ -1,6 +1,5 @@
 var request = require('request');
 var Promise = require('promise');
-var zlib = require('zlib');
 var util = require('util');
 var EventEmitter = require('events').EventEmitter;
 
