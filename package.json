@@ -1,0 +1,35 @@
+{
+  "name": "docloud-api",
+  "version": "0.1.10",
+  "description": "Client for IBM Decision Optimization on Cloud (DOcloud)",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "CPLEX",
+    "OPL",
+    "Decision",
+    "Optimization",
+    "docloud",
+    "bluemix"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mjaczynski/docloud-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mjaczynski/docloud-api/issues"
+  },
+  "homepage": "https://github.com/mjaczynski/docloud-api",
+  "author": "Michel Jaczynski",
+  "license": "MIT",
+  "dependencies": {
+    "npmlog": "^1.2.0",
+    "promise": "^7.0.0",
+    "request": "^2.55.0"
+  },
+  "devDependencies": {
+    "mocha": "^2.2.4"
+  }
+}
