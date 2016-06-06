@@ -12,7 +12,7 @@ indicates if the live log must be streamed (logstream property) and to which str
 The execute function will create the job, upload the attachments, and monitor the execution asynchronously. It will fire events when the job is created, processed, interrupted, failed, or if an error occurred. 
 
 ```
-var docloud = require('docloud-api');
+var docloud = require('DOcplexcloud-nodeJS-api');
 var fs = require('fs');
 var client = docloud({
 	  url : process.env.URL,
