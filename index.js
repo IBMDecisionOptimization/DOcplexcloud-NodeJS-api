@@ -1,3 +1,5 @@
+/*! docplexcloud-nodejs-api | Decision Optimization on Cloud | https://developer.ibm.com/docloud/ */
+
 var request = require('request');
 var Promise = require('promise');
 var util = require('util');

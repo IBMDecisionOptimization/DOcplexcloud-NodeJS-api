@@ -1,7 +1,7 @@
-# DOcplexcloud-nodeJS-api# Notice
+# Notice
 
 
-[IBM Decision Optimization on Cloud](http://www.ibm.com/software/analytics/docloud/) or DOcplexcloud for short is a service that lets you solve CPLEX and OPL problems on the Cloud. You can access the interactive service called DropSolve or you can use use the API to integrate the service into your application. Here is a quick [introduction](http://www.mycloudtips.com/2015/04/docloud.html) with useful links. This module provides a wrapper over the REST API using Promises. The [command line client](https://www.npmjs.com/package/docloud-cli) for DOcplexcloud is also a good tool and example showing how to use this API.
+[IBM Decision Optimization on Cloud](http://www.ibm.com/software/analytics/docloud/) or DOcplexcloud for short is a service that lets you solve CPLEX and OPL problems on the Cloud. You can access the interactive service called DropSolve or you can use use the API to integrate the service into your application. Here is a quick [introduction](http://www.mycloudtips.com/2015/04/docloud.html) with useful links. This module provides a wrapper over the REST API using Promises.
 
 Example
 -------
@@ -12,9 +12,9 @@ indicates if the live log must be streamed (logstream property) and to which str
 The execute function will create the job, upload the attachments, and monitor the execution asynchronously. It will fire events when the job is created, processed, interrupted, failed, or if an error occurred. 
 
 ```
-var docloud = require('DOcplexcloud-nodeJS-api');
+var docplexcloud = require('docplexcloud-nodejs-api');
 var fs = require('fs');
-var client = docloud({
+var client = docplexcloud({
 	  url : process.env.URL,
 	  clientId : process.env.KEY
 	})
@@ -47,54 +47,54 @@ client.execute({
 Basic API
 ---------
 
-The basic API is a simple wrapper of the DOcloud REST API returning Promises. It can be used to perform simple actions and chain them using promises.To know more about the different actions, parameters and returned information, you can refer to the REST API [documentation](https://api-swagger-oaas-beta.mybluemix.net/api_swagger/).
+The basic API is a simple wrapper of the DOcplexcloud REST API returning Promises. It can be used to perform simple actions and chain them using promises.To know more about the different actions, parameters and returned information, you can refer to the REST API [documentation](https://api-swagger-oaas.docloud.ibmcloud.com/api_swagger/).
 
 ```
 client.listJobs()
 ```
    * Returns the list of jobs
-   * @see [GET /jobs](https://api-swagger-oaas-beta.mybluemix.net/api_swagger/#!/jobs/getJobs)
+   * @see [GET /jobs](https://api-swagger-oaas.docloud.ibmcloud.com/api_swagger/#!/jobs/getJobs)
    
 ```
 client.deleteJobs()
 ```
    * Deletes all the jobs.
-   * @see [DELETE /jobs](https://api-swagger-oaas-beta.mybluemix.net/api_swagger/#!/jobs/deleteJobs)
+   * @see [DELETE /jobs](https://api-swagger-oaas.docloud.ibmcloud.com/api_swagger/#!/jobs/deleteJobs)
 
 ```
 client.createJob(data)
 ```
  * Creates a new job.
  * @param data the creation parameters
- * @see [POST /jobs](https://api-swagger-oaas-beta.mybluemix.net/api_swagger/#!/jobs/createJob)
+ * @see [POST /jobs](https://api-swagger-oaas.docloud.ibmcloud.com/api_swagger/#!/jobs/createJob)
  
 ```
 client.getJob(jobid)
 ```
  * Returns a job.
  * @param jobid the job id
- * @see [GET /jobs/{id}](https://api-swagger-oaas-beta.mybluemix.net/api_swagger/#!/jobs/getJob)
+ * @see [GET /jobs/{id}](https://api-swagger-oaas.docloud.ibmcloud.com/api_swagger/#!/jobs/getJob)
  
 ```
 client.deleteJob(jobid)
 ```
  * Deletes a job.
  * @param jobid the job id
- * @see [DELETE /jobs/{id}](https://api-swagger-oaas-beta.mybluemix.net/api_swagger/#!/jobs/deleteJob)
+ * @see [DELETE /jobs/{id}](https://api-swagger-oaas.docloud.ibmcloud.com/api_swagger/#!/jobs/deleteJob)
 
 ```
 client.executeJob(jobid)
 ```
  * Executes a job.
  * @param jobid the job id
- * @see [POST /jobs/{id}/execute](https://api-swagger-oaas-beta.mybluemix.net/api_swagger/#!/jobs/startJob)
+ * @see [POST /jobs/{id}/execute](https://api-swagger-oaas.docloud.ibmcloud.com/api_swagger/#!/jobs/startJob)
  
 ```
 client.getJobExecutionStatus(jobid)
 ```
  * Returns the job execution status.
  * @param jobid the job id
- * @see [GET /jobs/{id}/execute](https://api-swagger-oaas-beta.mybluemix.net/api_swagger/#!/jobs/getJobStatus)
+ * @see [GET /jobs/{id}/execute](https://api-swagger-oaas.docloud.ibmcloud.com/api_swagger/#!/jobs/getJobStatus)
 
 ```
 client.abortJob(jobid, kill)
@@ -102,7 +102,7 @@ client.abortJob(jobid, kill)
  * Aborts a job
  * @param jobid the job id
  * @param kill sets the abort mode to kill
- * @see [DELETE /jobs/{id}/execute](https://api-swagger-oaas-beta.mybluemix.net/api_swagger/#!/jobs/abortJob)
+ * @see [DELETE /jobs/{id}/execute](https://api-swagger-oaas.docloud.ibmcloud.com/api_swagger/#!/jobs/abortJob)
   
 ```
 client.uploadAttachment(jobid, attid, stream)
@@ -111,7 +111,7 @@ client.uploadAttachment(jobid, attid, stream)
  * @param jobid the job id
  * @param attid the attachment name
  * @param stream the stream to read from
- * @see [PUT /jobs/{id}/attachments/{attid}/blob](https://api-swagger-oaas-beta.mybluemix.net/api_swagger/#!/jobs/uploadJobAttachment)
+ * @see [PUT /jobs/{id}/attachments/{attid}/blob](https://api-swagger-oaas.docloud.ibmcloud.com/api_swagger/#!/jobs/uploadJobAttachment)
 
 ```
 client.downloadAttachment(jobid, attid, stream)
@@ -120,7 +120,7 @@ client.downloadAttachment(jobid, attid, stream)
  * @param jobid the job id
  * @param attid the attachment name
  * @param stream the stream to write to
- * @see [GET /jobs/{id}/attachments/{attid}/blob](https://api-swagger-oaas-beta.mybluemix.net/api_swagger/#!/jobs/downloadJobAttachment)
+ * @see [GET /jobs/{id}/attachments/{attid}/blob](https://api-swagger-oaas.docloud.ibmcloud.com/api_swagger/#!/jobs/downloadJobAttachment)
 
 ``` 
 client.getLogItems(jobid,start,continuous) 
@@ -129,7 +129,7 @@ client.getLogItems(jobid,start,continuous)
  * @param jobid the job id
  * @param start the starting index
  * @param continuous continuous mode indicator
- * @see [GET /jobs/{id}/log/items](https://api-swagger-oaas-beta.mybluemix.net/api_swagger/#!/jobs/getJobLogItems)
+ * @see [GET /jobs/{id}/log/items](https://api-swagger-oaas.docloud.ibmcloud.com/api_swagger/#!/jobs/getJobLogItems)
 
 ```
 client.downloadLog(jobid, stream)
@@ -137,7 +137,7 @@ client.downloadLog(jobid, stream)
  * Download the log
  * @param jobid the job id
  * @param stream the stream to write to
- * @see [GET /jobs/{id}/log/blob](https://api-swagger-oaas-beta.mybluemix.net/api_swagger/#!/jobs/downloadLog)
+ * @see [GET /jobs/{id}/log/blob](https://api-swagger-oaas.docloud.ibmcloud.com/api_swagger/#!/jobs/downloadLog)
 
 Event API
 ---------
@@ -171,11 +171,3 @@ Status
 ------
 Under development, module API can change without notice.
 
-
-
-
-
-
-
-
-"# DOcplexcloud-nodeJS-api" 
