@@ -1,0 +1,35 @@
+{
+  "name": "docplexcloud-nodejs-api",
+  "version": "0.2.0",
+  "description": "Client for IBM Decision Optimization on Cloud (DOcplexcloud)",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "CPLEX",
+    "OPL",
+    "Decision",
+    "Optimization",
+    "docplexcloud",
+    "bluemix"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IBMDecisionOptimization/DOcplexcloud-NodeJS-api.git"
+  },
+  "homepage": "https://developer.ibm.com/docloud/",
+  "contributors": [
+    "Michel Jaczynski <mjaczynski@gmail.com>",
+    "DOcplexcloud Team <docloud@wwpdl.vnet.ibm.com>"
+  ],
+  "license": "MIT",
+ "dependencies": {
+    "npmlog": "^1.2.0",
+    "promise": "^7.0.0",
+    "request": "^2.55.0"
+  },
+  "devDependencies": {
+    "mocha": "^2.2.4"
+  }
+}
