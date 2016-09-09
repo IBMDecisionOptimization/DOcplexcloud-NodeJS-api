@@ -52,121 +52,120 @@ The basic API is a simple wrapper of the DOcplexcloud REST API returning Promise
 ```
 client.listJobs()
 ```
-Returns the list of jobs.
+Returns the list of jobs.  
 **See:** [GET /jobs](https://api-swagger-oaas.docloud.ibmcloud.com/api_swagger/#!/jobs/getJobs)
    
 ```
 client.deleteJobs()
 ```
-Deletes all the jobs.
+Deletes all the jobs.  
 **See:** [DELETE /jobs](https://api-swagger-oaas.docloud.ibmcloud.com/api_swagger/#!/jobs/deleteJobs)
 
 ```
 client.createJob(data)
 ```
-Creates a new job.
-**Parameter:** `data` the creation parameters
+Creates a new job.  
+**Parameter:** `data` the creation parameters.  
 **See:** [POST /jobs](https://api-swagger-oaas.docloud.ibmcloud.com/api_swagger/#!/jobs/createJob)
  
 ```
 client.getJob(jobid)
 ```
-Returns a job.
-**Parameter:** `jobid` the job id
+Returns a job.  
+**Parameter:** `jobid` the job id.  
 **See:** [GET /jobs/{id}](https://api-swagger-oaas.docloud.ibmcloud.com/api_swagger/#!/jobs/getJob)
  
 ```
 client.deleteJob(jobid)
 ```
-Deletes a job.
-**Parameter:** `jobid` the job id
+Deletes a job.  
+**Parameter:** `jobid` the job id.  
 **See:** [DELETE /jobs/{id}](https://api-swagger-oaas.docloud.ibmcloud.com/api_swagger/#!/jobs/deleteJob)
 
 ```
 client.executeJob(jobid)
 ```
-Executes a job.
-**Parameter:** `jobid` the job id
+Executes a job.  
+**Parameter:** `jobid` the job id.  
 **See:** [POST /jobs/{id}/execute](https://api-swagger-oaas.docloud.ibmcloud.com/api_swagger/#!/jobs/startJob)
  
 ```
 client.getJobExecutionStatus(jobid)
 ```
-Returns the job execution status.
-**Parameter:** `jobid` the job id
+Returns the job execution status.  
+**Parameter:** `jobid` the job id.  
 **See:** [GET /jobs/{id}/execute](https://api-swagger-oaas.docloud.ibmcloud.com/api_swagger/#!/jobs/getJobStatus)
 
 ```
 client.abortJob(jobid, kill)
 ```
-Aborts a job
-**Parameter:** `jobid` the job id
-**Parameter:** `kill` sets the abort mode to kill
+Aborts a job. 
+**Parameter:** `jobid` the job id.  
+**Parameter:** `kill` sets the abort mode to kill.  
 **See:** [DELETE /jobs/{id}/execute](https://api-swagger-oaas.docloud.ibmcloud.com/api_swagger/#!/jobs/abortJob)
   
 ```
 client.uploadAttachment(jobid, attid, stream)
 ```
-Upload an attachment; the attachment will be compressed automatically.
-**Parameter:** `jobid` the job id
-**Parameter:** `attid` the attachment name
-**Parameter:** `stream` the stream to read from
+Upload an attachment; the attachment will be compressed automatically.  
+**Parameter:** `jobid` the job id.  
+**Parameter:** `attid` the attachment name.  
+**Parameter:** `stream` the stream to read from.  
 **See:** [PUT /jobs/{id}/attachments/{attid}/blob](https://api-swagger-oaas.docloud.ibmcloud.com/api_swagger/#!/jobs/uploadJobAttachment)
 
 ```
 client.downloadAttachment(jobid, attid, stream)
 ```
-Download an attachment.
-**Parameter:** jobid the job id
-**Parameter:** attid the attachment name
-**Parameter:** stream the stream to write to
+Download an attachment.  
+**Parameter:** `jobid` the job id.  
+**Parameter:** `attid` the attachment name.  
+**Parameter:** `stream` the stream to write to.  
 **See:** [GET /jobs/{id}/attachments/{attid}/blob](https://api-swagger-oaas.docloud.ibmcloud.com/api_swagger/#!/jobs/downloadJobAttachment)
 
 ``` 
 client.getLogItems(jobid,start,continuous) 
 ```
-Returns the log items
-**Parameter:** `jobid` the job id
-**Parameter:** `start` the starting index
-**Parameter:** `continuous` continuous mode indicator
+Returns the log items.  
+**Parameter:** `jobid` the job id.  
+**Parameter:** `start` the starting index.  
+**Parameter:** `continuous` continuous mode indicator.  
 **See:** [GET /jobs/{id}/log/items](https://api-swagger-oaas.docloud.ibmcloud.com/api_swagger/#!/jobs/getJobLogItems)
 
 ```
 client.downloadLog(jobid, stream)
 ```
-Download the log.
-**Parameter:** `jobid` the job id
-**Parameter:** stream the stream to write to
+Download the log.  
+**Parameter:** `jobid` the job id.  
+**Parameter:** `stream` the stream to write to.  
 **Parameter:** [GET /jobs/{id}/log/blob](https://api-swagger-oaas.docloud.ibmcloud.com/api_swagger/#!/jobs/downloadLog)
 
 Event API
 ---------
 
-The event API let you submit and monitor your jobs in a very simple way.  
+The event API lets you submit and monitor your jobs in a very simple way.  
 
 ```
 client.execute(data)
 ```
-Submits and monitors a job execution
-**Parameter:** `data` the data containing attachments, parameters
-**Returns:** the event emitter to attach event callbacks
+Submits and monitors a job execution.  
+**Parameter:** `data` the data containing attachments, parameters.  
+**Returns:** the event emitter to attach event callbacks.  
 
 ```
 client.submit(data)
 ```
-Submits but does not monitor the job.
-**Parameter:** data the data containing attachments, parameters
-**Returns:** the event emitter to attach event callbacks
+Submits but does not monitor the job.  
+**Parameter:** `data` the data containing attachments, parameters.  
+**Returns:** the event emitter to attach event callbacks.  
  
 ```
 client.create(data)
 ```
-Creates the job, but does not submit or monitor it. 
-**Parameter:** data the data containing attachments, parameters
-**Returns:** the event emitter to attach event callbacks (error and created only)
+Creates the job, but does not submit or monitor it.  
+**Parameter:** `data` the data containing attachments, parameters.  
+**Returns:** the event emitter to attach event callbacks (error and created only).  
 
  
-
 Status
 ------
 Under development, module API can change without notice.
