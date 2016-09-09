@@ -1,15 +1,15 @@
 # Notice
 
 
-[IBM Decision Optimization on Cloud](http://www.ibm.com/software/analytics/docloud/) or DOcplexcloud for short is a service that lets you solve CPLEX and OPL problems on the Cloud. You can access the interactive service called DropSolve or you can use use the API to integrate the service into your application. Here is a quick [introduction](http://www.mycloudtips.com/2015/04/docloud.html) with useful links. This module provides a wrapper over the REST API using Promises.
+[IBM Decision Optimization on Cloud](http://www.ibm.com/software/analytics/docloud/) (or DOcplexcloud) is a service that lets you solve CPLEX, CP Optimizer, and OPL problems on the Cloud. You can access the interactive service called DropSolve or you can use use the API to integrate the service into your application. Here is a quick [introduction](http://developer.ibm.com/docloud/documentation/welcome/). This module provides a wrapper over the REST API using Promises.
 
 Example
 -------
 
-In this following example, we submit an OPL project made of several files. The execute function takes an object to configure how the job will
-be created and monitored. This object provides the client with the list of attachments to create (attachments property) and where to get their streams. It also 
-indicates if the live log must be streamed (logstream property) and to which stream. Additional parameters can be declared as well (parameters property).
-The execute function will create the job, upload the attachments, and monitor the execution asynchronously. It will fire events when the job is created, processed, interrupted, failed, or if an error occurred. 
+In this following example, we submit an OPL project made of several files. The `execute` function takes an object to configure how the job will
+be created and monitored. This object provides the client with the list of attachments to create (`attachments` property) and where to get their streams. It also 
+indicates if the live log must be streamed (`logstream` property) and to which stream. Additional parameters can be declared as well (`parameters` property).
+The `execute` function creates the job, uploads the attachments, and monitors the execution asynchronously. It fires events when the job is created, processed, interrupted, failed, or if an error occurs. 
 
 ```
 var docplexcloud = require('docplexcloud-nodejs-api');
