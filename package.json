@@ -19,6 +19,10 @@
     "Michel Jaczynski <mjaczynski@gmail.com>",
     "DOcplexcloud Team <docloud@wwpdl.vnet.ibm.com>"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IBMDecisionOptimization/DOcplexcloud-NodeJS-api.git"
+  },
   "license": "MIT",
  "dependencies": {
     "npmlog": "^1.2.0",
