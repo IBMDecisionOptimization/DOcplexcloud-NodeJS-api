@@ -4,6 +4,7 @@ var request = require('request');
 var Promise = require('promise');
 var util = require('util');
 var EventEmitter = require('events').EventEmitter;
+const zlib = require('zlib');
 
 var client = new Object();
 
