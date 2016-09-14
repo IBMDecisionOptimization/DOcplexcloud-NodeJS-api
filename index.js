@@ -4,10 +4,8 @@ var request = require('request');
 var Promise = require('promise');
 var util = require('util');
 var EventEmitter = require('events').EventEmitter;
-<<<<<<< HEAD
+
 const zlib = require('zlib');
-=======
->>>>>>> branch 'master' of https://github.com/IBMDecisionOptimization/docplexcloud-nodejs-api
 
 var client = new Object();
 
