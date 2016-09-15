@@ -1,11 +1,7 @@
 # Notice
 
 
-<<<<<<< HEAD
 [IBM Decision Optimization on Cloud](http://www.ibm.com/software/analytics/docloud/) (or DOcplexcloud) is a service that lets you solve CPLEX, CP Optimizer, and OPL problems on the Cloud. You can access the interactive service called DropSolve or you can use use the API to integrate the service into your application. Here is a quick [introduction](http://developer.ibm.com/docloud/documentation/decision-optimization-on-cloud/). This module provides a wrapper over the REST API using Promises.
-=======
-[IBM Decision Optimization on Cloud](http://www.ibm.com/software/analytics/docloud/) or DOcplexcloud for short is a service that lets you solve CPLEX and OPL problems on the Cloud. You can access the interactive service called DropSolve or you can use use the API to integrate the service into your application. Here is a quick [introduction](https://developer.ibm.com/docloud/documentation/decision-optimization-on-cloud/) with useful links. This module provides a wrapper over the REST API using Promises.
->>>>>>> master
 
 Example
 -------
@@ -19,33 +15,33 @@ The `execute` function creates the job, uploads the attachments, and monitors th
 var docplexcloud = require('docplexcloud-nodejs-api');
 var fs = require('fs');
 var client = docplexcloud({
-	  url : process.env.URL,
-	  clientId : process.env.KEY
-	})
-	
+url : process.env.URL,
+clientId : process.env.KEY
+})
+
 client.execute({
-		logstream : process.stdout,
-		parameters : { "oaas.TIME_LIMIT" : 3*60*1000},
-		attachments : [
-	        {name : '.oplproject', 
-	    	 stream : fs.createReadStream('test/warehouse-location/.oplproject')},
-	        {name : 'warehouse_cloud.dat', 
-		     stream : fs.createReadStream('test/warehouse-location/warehouse_cloud.dat')},
-		    {name : 'warehouse_cloud.mod', 
-			 stream : fs.createReadStream('test/warehouse-location/warehouse_cloud.mod')},
-			{name : 'warehouse_data.mod', 
-			 stream : fs.createReadStream('test/warehouse-location/warehouse_data.mod')},
-	    ]})
-	   .on('created', function(jobid){console.log(jobid+" created")})
-	   .on('processed', function(jobid){
-		   console.log(jobid+" processed");
-		   client.downloadAttachment(jobid,'solution.json',fs.createWriteStream('test/warehouse-location/solution.json'))
-		         .then(function () {return client.downloadLog(jobid,fs.createWriteStream('test/warehouse-location/solution.log'))})
-	   })
-	   .on('interrupted', function(jobid){console.log("job was interrupted")})
-	   .on('failed', function(jobid){console.log("job failed")})
-	   .on('error', function(error){console.log(error)})
-	   		
+logstream : process.stdout,
+parameters : { "oaas.TIME_LIMIT" : 3*60*1000},
+attachments : [
+{name : '.oplproject', 
+stream : fs.createReadStream('test/warehouse-location/.oplproject')},
+{name : 'warehouse_cloud.dat', 
+stream : fs.createReadStream('test/warehouse-location/warehouse_cloud.dat')},
+{name : 'warehouse_cloud.mod', 
+stream : fs.createReadStream('test/warehouse-location/warehouse_cloud.mod')},
+{name : 'warehouse_data.mod', 
+stream : fs.createReadStream('test/warehouse-location/warehouse_data.mod')},
+]})
+.on('created', function(jobid){console.log(jobid+" created")})
+.on('processed', function(jobid){
+console.log(jobid+" processed");
+client.downloadAttachment(jobid,'solution.json',fs.createWriteStream('test/warehouse-location/solution.json'))
+.then(function () {return client.downloadLog(jobid,fs.createWriteStream('test/warehouse-location/solution.log'))})
+})
+.on('interrupted', function(jobid){console.log("job was interrupted")})
+.on('failed', function(jobid){console.log("job failed")})
+.on('error', function(error){console.log(error)})
+
 ```
 
 Basic API
@@ -58,7 +54,7 @@ client.listJobs()
 ```
 Returns the list of jobs.  
 **See:** [GET /jobs](https://api-swagger-oaas.docloud.ibmcloud.com/api_swagger/#!/jobs/getJobs)
-   
+
 ```
 client.deleteJobs()
 ```
@@ -71,14 +67,14 @@ client.createJob(data)
 Creates a new job.  
 **Parameter:** `data` the creation parameters.  
 **See:** [POST /jobs](https://api-swagger-oaas.docloud.ibmcloud.com/api_swagger/#!/jobs/createJob)
- 
+
 ```
 client.getJob(jobid)
 ```
 Returns a job.  
 **Parameter:** `jobid` the job id.  
 **See:** [GET /jobs/{id}](https://api-swagger-oaas.docloud.ibmcloud.com/api_swagger/#!/jobs/getJob)
- 
+
 ```
 client.deleteJob(jobid)
 ```
@@ -92,7 +88,7 @@ client.executeJob(jobid)
 Executes a job.  
 **Parameter:** `jobid` the job id.  
 **See:** [POST /jobs/{id}/execute](https://api-swagger-oaas.docloud.ibmcloud.com/api_swagger/#!/jobs/startJob)
- 
+
 ```
 client.getJobExecutionStatus(jobid)
 ```
@@ -107,7 +103,7 @@ Aborts a job.
 **Parameter:** `jobid` the job id.  
 **Parameter:** `kill` sets the abort mode to kill.  
 **See:** [DELETE /jobs/{id}/execute](https://api-swagger-oaas.docloud.ibmcloud.com/api_swagger/#!/jobs/abortJob)
-  
+
 ```
 client.uploadAttachment(jobid, attid, stream)
 ```
@@ -161,7 +157,7 @@ client.submit(data)
 Submits but does not monitor the job.  
 **Parameter:** `data` the data containing attachments, parameters.  
 **Returns:** the event emitter to attach event callbacks.  
- 
+
 ```
 client.create(data)
 ```
@@ -169,8 +165,7 @@ Creates the job, but does not submit or monitor it.
 **Parameter:** `data` the data containing attachments, parameters.  
 **Returns:** the event emitter to attach event callbacks (error and created only).  
 
- 
+
 Status
 ------
 Under development, module API can change without notice.
-
