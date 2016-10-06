@@ -234,17 +234,21 @@ client.getLogItems = function (jobid,start,continuous) {
 
 function doPoll(client,jobid, resolve, reject){
 	client.getJobExecutionStatus(jobid)
-	.then(function (status){
-		util.log("Job %s is %s",jobid,status.executionStatus)
-		   if (status.executionStatus=='FAILED' || 
-				   status.executionStatus=='PROCESSED' || 
-				   status.executionStatus=='INTERRUPTED'){
-			     resolve(status);
-		       } else {		    	   
-		    	   setTimeout(doPoll(client,jobid, resolve, reject), 2000);  
-		       }
-		   })
-	.catch( function(error) {reject(error)})
+		.then(function (status) {
+			util.log("Job %s is %s", jobid, status.executionStatus)
+			if (status.executionStatus == 'FAILED' ||
+				status.executionStatus == 'PROCESSED' ||
+				status.executionStatus == 'INTERRUPTED') {
+				resolve(status);
+			} else {
+				setTimeout(function () {
+					doPoll(client, jobid, resolve, reject), 2000
+				});
+			}
+		})
+		.catch(function (error) {
+			reject(error)
+		})
 };
 
 function endsWith(str, suffix) {
@@ -252,29 +256,33 @@ function endsWith(str, suffix) {
 }
 
 function doPollLog(client,jobid, resolve, reject,logstream,start){
-	client.getLogItems(jobid,start,true)
-	.then(function (items){		    
-		    var next = start;
-		    var stop =false;
-			for (var i=0; i < items.length; i++){
+	client.getLogItems(jobid, start, true)
+		.then(function (items) {
+			var next = start;
+			var stop = false;
+			for (var i = 0; i < items.length; i++) {
 				var item = items[i]
-				for (var j =0; j < item.records.length; j++){					
-				    var r = item.records[j]
-				    var message = util.format("[%s] %s - %s",new Date(r.date).toLocaleString(),r.level,r.message)
-				    if (!endsWith(message,"\n")) message+="\n";
-				    logstream.write(message)
-				}			   
-			   	next= item.seqid+1;			   
-			   	stop=item.stop;
-			}	    	   
+				for (var j = 0; j < item.records.length; j++) {
+					var r = item.records[j]
+					var message = util.format("[%s] %s - %s", new Date(r.date).toLocaleString(), r.level, r.message)
+					if (!endsWith(message, "\n")) message += "\n";
+					logstream.write(message)
+				}
+				next = item.seqid + 1;
+				stop = item.stop;
+			}
 			if (stop) {
 				resolve(jobid)
 				return;
 			}
-		    setTimeout(doPollLog(client,jobid, resolve, reject,logstream,next), 2000);  
-		       
-		   })
-	.catch( function(error) {reject(error)})
+			setTimeout(function () {
+				doPollLog(client, jobid, resolve, reject, logstream, next), 2000
+			});
+
+		})
+		.catch(function (error) {
+			reject(error)
+		})
 };
 
 /**
