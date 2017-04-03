@@ -470,7 +470,7 @@ client.execute = function (data){
 	    att.name = x.name;
 	    if (typeof x.stream !== 'object') throw new Error('Attachment stream undefined or not a string')
 	    if (x.length){
-	    	if (typeof x.length !== 'number') throw new Error('Attachment length ia not a number')
+	    	if (typeof x.length !== 'number') throw new Error('Attachment length is not a number')
 	    	 att.length = x.length;
 	    } 
 	    return att;
